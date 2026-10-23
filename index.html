@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elouan Dufour — Portfolio Génie Mécanique</title>
+  
+  <!-- Polices Google : Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #f5f3ef;
+      --bg-card: #ffffff;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --accent-sand: #e8ded1;
+      --accent-sand-dark: #d5c5b1;
+      --accent-dark: #1a1a1a;
+      --border-color: #e2ded8;
+      --radius-lg: 16px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html, body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* EN-TÊTE & NAVIGATION */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(245, 243, 239, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 32px;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    nav button:hover { color: var(--text-main); }
+
+    nav button.active {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    nav button.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--text-main);
+    }
+
+    .btn-nav-contact {
+      background: var(--text-main);
+      color: #ffffff;
+      padding: 9px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-nav-contact:hover { opacity: 0.88; }
+
+    /* CONTENEUR PRINCIPAL */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 32px 64px 32px;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO SLIDER */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .hero-text-card {
+      background-color: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      min-height: 520px;
+    }
+
+    .text-slide { display: none; }
+    .text-slide.active { display: block; animation: fadeIn 0.3s ease; }
+
+    .slide-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--accent-sand);
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .hero-desc p {
+      margin-bottom: 12px;
+    }
+
+    .hero-desc p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-desc strong {
+      color: var(--text-main);
+    }
+
+    .hero-media-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 520px;
+      border: 1px solid var(--border-color);
+      background: var(--accent-sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+
+    .slide.active { 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+    }
+
+    .slide img, .slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-placeholder {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .media-nav-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .overlay-arrow-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      pointer-events: auto;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .overlay-arrow-btn:hover {
+      background: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .slide-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dot.active {
+      background: var(--text-main);
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* SECTIONS */
+    .section-header { margin-bottom: 32px; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-sub { color: var(--text-muted); font-size: 1.05rem; }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .content-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    /* CARTE AVEC IMAGE DE FOND */
+    .card-bg-image {
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .card-bg-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.78) 100%);
+      z-index: 1;
+    }
+
+    .card-bg-image * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-bg-image .card-body {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .card-bg-image .card-click-hint {
+      color: #ffffff;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--accent-sand);
+      color: var(--text-main);
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+
+    .card-click-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-top: 14px;
+      color: var(--text-main);
+    }
+
+    .card-h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* MODALE POPUP MULTI-IMAGES */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-container {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      max-width: 950px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .modal-container.single-col { grid-template-columns: 1fr; }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 20;
+    }
+
+    .modal-close-btn:hover { background: var(--text-main); color: #ffffff; }
+
+    .modal-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-gallery img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: contain;
+      background: #f0ede6;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .modal-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .modal-body p { margin-bottom: 14px; }
+    .modal-body ul { margin-left: 20px; margin-bottom: 14px; }
+
+    /* CONTACT */
+    .contact-container {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row a { color: var(--text-main); font-weight: 600; text-decoration: none; }
+    .contact-row a:hover { text-decoration: underline; }
+
+    @media (max-width: 992px) {
+      .hero-grid, .grid-3, .grid-2, .modal-container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <a href="#" class="brand" onclick="switchTab('tab-0')">Elouan Dufour</a>
+    <nav>
+      <ul>
+        <li><button class="nav-link active" onclick="switchTab('tab-0')">Accueil</button></li>
+        <li><button class="nav-link" onclick="switchTab('tab-1')">Réalisations</button></li>
+        <li><button class="nav-link" onclick="switchTab('tab-2')">Compétences & CV</button></li>
+        <li><button class="nav-link" onclick="switchTab('tab-3')">Centres d'intérêt</button></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn-nav-contact" onclick="switchTab('tab-4')">Me contacter</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. ACCUEIL -->
+  <div id="tab-0" class="tab-content active">
+    <div class="hero-grid">
+      <div class="hero-text-card">
+        
+        <!-- Slide 1 : Présentation Générale & Vidéo -->
+        <div class="text-slide active">
+          <span class="slide-badge">Présentation</span>
+          <h1 class="hero-title">Vidéo de Présentation</h1>
+          <div class="hero-desc">
+            <p>
+              Je m'appelle Elouan Dufour, étudiant en Génie Mécanique et Productique (GMP), passionné par l'innovation technique, la modélisation CAO, l'industrialisation, et les différents procédés de fabrication.
+            </p>
+            <p>
+              Découvrez mon parcours académique ainsi que mes expériences professionnelles en entreprise.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 2 : Parcours Académique -->
+        <div class="text-slide">
+          <span class="slide-badge">Formation</span>
+          <h1 class="hero-title">Parcours Académique</h1>
+          <div class="hero-desc">
+            <p>
+              <strong>Lycée :</strong> Titulaire d'un Bac Général avec les spécialités Mathématiques et Sciences de l'Ingénieur (SI). J'ai également eu l'opportunité de participer aux Olympiades de Sciences de l'Ingénieur, une expérience enrichissante de travail en équipe sur un projet technique.
+            </p>
+            <p>
+              <strong>IUT d'Orléans :</strong> Étudiant en BUT Génie Mécanique et Productique (GMP), où je développe de solides compétences en conception CAO, dimensionnement mécanique, méthode d'industrialisation et procédés de fabrication.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 3 : Stage & Alternance chez Hutchinson ESPA -->
+        <div class="text-slide">
+          <span class="slide-badge">Expérience Professionnelle</span>
+          <h1 class="hero-title">Hutchinson ESPA</h1>
+          <div class="hero-desc">
+            <p>
+              <strong>Stage (BUT 2) — Service Industrialisation :</strong><br>
+              J'ai contribué à un gros projet en réalisant de nombreux documents techniques (gammes de fabrication) pour la réalisation et les essais de colliers de fixation. J'ai également réalisé des fichiers de gestion notamment pour les outillages et l'approvisionnement en matières premières.
+            </p>
+            <p>
+              <strong>Alternance (BUT 3) — Service Industrialisation :</strong><br>
+              Je poursuis sur mon projet de colliers de fixation tout en révisant le processus de fabrication d'un type de collier spécifique, détaché du projet et produit depuis plusieurs années chez ESPA. Mon rôle est d'étudier le processus existant et de proposer des améliorations, notamment sur les outillages, pour renforcer la sécurité de l'opérateur et améliorer la qualité finale du produit.
+            </p>
+          </div>
+        </div>
+
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 20px;">
+          ← Utilisez les flèches du carrousel pour faire défiler les fiches →
+        </div>
+      </div>
+
+      <div class="hero-media-card">
+        <div class="media-nav-overlay">
+          <button class="overlay-arrow-btn" onclick="moveSlide(-1)">←</button>
+          <button class="overlay-arrow-btn" onclick="moveSlide(1)">→</button>
+        </div>
+
+        <!-- Slide Media 0 : Vidéo 3 -->
+        <div class="slide active">
+          <video controls poster="image accueil.jpg">
+            <source src="vidéo3.mp4" type="video/mp4">
+            <source src="vidéo3.webm" type="video/webm">
+            Votre navigateur ne prend pas en charge la lecture de vidéo.
+          </video>
+        </div>
+
+        <!-- Slide Media 1 : Image IUT Orléans -->
+        <div class="slide">
+          <img src="IUT orléans.jpg" alt="IUT Orléans">
+        </div>
+
+        <!-- Slide Media 2 : Image Hutchinson ESPA -->
+        <div class="slide">
+          <img src="Hutchinson.jpeg" alt="Hutchinson ESPA">
+        </div>
+
+        <div class="slide-dots">
+          <div class="dot active" onclick="setSlide(0)"></div>
+          <div class="dot" onclick="setSlide(1)"></div>
+          <div class="dot" onclick="setSlide(2)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. RÉALISATIONS -->
+  <div id="tab-1" class="tab-content">
+    <div class="section-header">
+      <h2 class="section-title">Réalisations & Projets Techniques</h2>
+      <p class="section-sub">Cliquez sur une carte pour afficher le projet en grand format avec tous les détails et visuels.</p>
+    </div>
+
+    <div class="grid-3">
+      <!-- 1. Projet Genouillère -->
+      <div class="content-card" onclick="openKneeModal()">
+        <div>
+          <span class="card-tag">Conception & Industrialisation</span>
+          <h3 class="card-h3">Projet Genouillère</h3>
+          <div class="card-body">
+            <p>Conception et fabrication intégrale d'une genouillère mécanique, de la CAO sous Creo à l'assemblage final.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Découvrir le projet ↗</div>
+      </div>
+
+      <!-- 2. Projet Oeuf Surprise -->
+      <div class="content-card" onclick="openEggModal()">
+        <div>
+          <span class="card-tag">Projet Modélisation & Fabrication</span>
+          <h3 class="card-h3">Projet 2ème année œuf surprise</h3>
+          <div class="card-body">
+            <p>Conception et réalisation d'un jouet démontable logé dans un œuf avec socle réversible.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Découvrir le projet ↗</div>
+      </div>
+
+      <!-- 3. Projet Conception d'un train épicycloïdal -->
+      <div class="content-card" onclick="openTrainModal()">
+        <div>
+          <span class="card-tag">Conception & Transmission</span>
+          <h3 class="card-h3">Conception d'un train épicycloïdal</h3>
+          <div class="card-body">
+            <p>Étude, modélisation et dimensionnement d'un mécanisme de transmission par train d'engrenages épicycloïdal.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Découvrir le projet ↗</div>
+      </div>
+
+      <!-- 4. Projet Moteur Lombardini (MIS À JOUR) -->
+      <div class="content-card" onclick="openLombardiniModal()">
+        <div>
+          <span class="card-tag">Ingénierie & Énergie</span>
+          <h3 class="card-h3">Transition d'un moteur Lombardini en moteur à hydrogène</h3>
+          <div class="card-body">
+            <p>Étude et adaptation d'un moteur thermique pour une conversion vers l'hydrogène. Projet en cours d'étude.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Voir les détails du projet ↗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. COMPÉTENCES & CV -->
+  <div id="tab-2" class="tab-content">
+    <div class="section-header">
+      <h2 class="section-title">Compétences Techniques & CV</h2>
+      <p class="section-sub">Découvrez mes aptitudes, mes logiciels maîtrisés ainsi que mon CV.</p>
+    </div>
+
+    <!-- Téléchargement CV -->
+    <div class="content-card" style="margin-bottom: 32px; background: var(--accent-sand); cursor: default;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h3 class="card-h3" style="margin-bottom: 4px;">Curriculum Vitae</h3>
+          <p style="color: #555;">Téléchargez mon CV au format PDF pour consulter l'intégralité de mon parcours.</p>
+        </div>
+        <a href="Elouan Dufour CV.pdf" download class="bottom-card-btn" style="background: var(--text-main); color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem;">📄 Télécharger mon CV (PDF)</a>
+      </div>
+    </div>
+
+    <!-- 3 Cases de Compétences -->
+    <div class="grid-3">
+      
+      <!-- Case 1: Savoir-faire -->
+      <div class="content-card" onclick="openSavoirFaireModal()">
+        <div>
+          <span class="card-tag">Techniques & Méthodes</span>
+          <h3 class="card-h3">Savoir-faire</h3>
+          <div class="card-body">
+            <p>Compétences techniques en conception CAO, procédés d'usinage, industrialisation, métrologie et méthodes de fabrication.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Découvrir les compétences ↗</div>
+      </div>
+
+      <!-- Case 2: Savoir-être -->
+      <div class="content-card" onclick="openSavoirEtreModal()">
+        <div>
+          <span class="card-tag">Relationnel & Organisation</span>
+          <h3 class="card-h3">Savoir-être</h3>
+          <div class="card-body">
+            <p>Mise en valeur du travail d'équipe, de la communication, de l'adaptabilité, de l'autonomie et de la rigueur professionnelle.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Découvrir les aptitudes ↗</div>
+      </div>
+
+      <!-- Case 3: Logiciels maîtrisés -->
+      <div class="content-card" onclick="openLogicielsModal()">
+        <div>
+          <span class="card-tag">Outils Informatiques</span>
+          <h3 class="card-h3">Logiciels maîtrisés</h3>
+          <div class="card-body">
+            <p>Maîtrise des outils CAO/FAO, ERP, bureautiques et contrôle métrologique : <strong>Creo, TopSolid, Infor, Excel, Calypso</strong>.</p>
+          </div>
+        </div>
+        <div class="card-click-hint">Découvrir les logiciels ↗</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. CENTRES D'INTÉRÊT -->
+  <div id="tab-3" class="tab-content">
+    <div class="section-header">
+      <h2 class="section-title">Centres d'intérêt Extra-Professionnels</h2>
+      <p class="section-sub">Ce qui me passionne en dehors du génie mécanique.</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Carte Montagne -->
+      <div class="content-card card-bg-image" style="background-image: url('Montagne 2.jpg');" onclick="openMountainModal()">
+        <span class="card-tag">Nature & Montagne</span>
+        <h3 class="card-h3">Montagne, Trek & Bivouac</h3>
+        <div class="card-body">
+          <p>Passionné de nature depuis mon enfance. Randonnées, treks de plusieurs jours, ski nordique et bivouacs partagés.</p>
+        </div>
+        <div class="card-click-hint">Découvrir mes aventures ↗</div>
+      </div>
+
+      <!-- Carte VTT -->
+      <div class="content-card card-bg-image" style="background-image: url('VTT.jpg');" onclick="openVTTModal()">
+        <span class="card-tag">Sport & Sensations</span>
+        <h3 class="card-h3">VTT & Compétition</h3>
+        <div class="card-body">
+          <p>Pratique passionnée du VTT depuis l'âge de 8 ans au club ASCO VTT. Sensations, découvertes et compétitions régionales.</p>
+        </div>
+        <div class="card-click-hint">En savoir plus ↗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CONTACT -->
+  <div id="tab-4" class="tab-content">
+    <div class="section-header" style="text-align: center;">
+      <h2 class="section-title">Me Contacter</h2>
+      <p class="section-sub">N'hésitez pas à me joindre pour toute opportunité ou échange technique.</p>
+    </div>
+
+    <div class="contact-container">
+      <div class="contact-row">
+        <strong>Email :</strong>
+        <a href="mailto:dufour.elouan1305@orange.fr">dufour.elouan1305@orange.fr</a>
+      </div>
+      <div class="contact-row">
+        <strong>Téléphone :</strong>
+        <a href="tel:+33633909088">06 33 90 90 88</a>
+      </div>
+      <div class="contact-row">
+        <strong>LinkedIn :</strong>
+        <a href="https://www.linkedin.com/in/elouan-dufour-99254929b?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank">Profil LinkedIn Elouan Dufour</a>
+      </div>
+      <div class="contact-row">
+        <strong>Localisation :</strong>
+        <span>Orléans / Région Centre (France)</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FENÊTRE MODALE POPUP -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeModalOnBg(event)">
+  <div class="modal-container" id="modalContainer">
+    <button class="modal-close-btn" onclick="closeModal()">✕</button>
+    <div id="modalMediaContainer" class="modal-gallery"></div>
+    <div id="modalTextContainer">
+      <span id="modalTag" class="card-tag">Tag</span>
+      <h2 id="modalTitle" class="modal-title">Titre</h2>
+      <div id="modalBody" class="modal-body">Description...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+
+    const activeTab = document.getElementById(tabId);
+    if (activeTab) activeTab.classList.add('active');
+
+    const indexMap = { 'tab-0': 0, 'tab-1': 1, 'tab-2': 2, 'tab-3': 3, 'tab-4': 4 };
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (indexMap[tabId] !== undefined && navLinks[indexMap[tabId]]) {
+      navLinks[indexMap[tabId]].classList.add('active');
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const textSlides = document.querySelectorAll('.text-slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function showSlide(index) {
+    if (slides.length === 0) return;
+    if (index >= slides.length) currentSlide = 0;
+    else if (index < 0) currentSlide = slides.length - 1;
+    else currentSlide = index;
+
+    slides.forEach(s => s.classList.remove('active'));
+    textSlides.forEach(t => t.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    slides[currentSlide].classList.add('active');
+    if (textSlides[currentSlide]) textSlides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+  }
+
+  function moveSlide(direction) { showSlide(currentSlide + direction); }
+  function setSlide(index) { showSlide(index); }
+
+  function openModal(title, tag, bodyHtml, imagesArray) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalTag').innerText = tag;
+    document.getElementById('modalBody').innerHTML = bodyHtml;
+
+    const mediaBox = document.getElementById('modalMediaContainer');
+    const container = document.getElementById('modalContainer');
+    mediaBox.innerHTML = '';
+
+    if (imagesArray && imagesArray.length > 0) {
+      imagesArray.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        mediaBox.appendChild(img);
+      });
+      mediaBox.style.display = 'flex';
+      container.classList.remove('single-col');
+    } else {
+      mediaBox.style.display = 'none';
+      container.classList.add('single-col');
+    }
+
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  /* MODALE MOTEUR LOMBARDINI (SANS PHOTO & TEXTE MODIFIÉ) */
+  function openLombardiniModal() {
+    const lombardiniText = `
+      <p><b>Projet en cours de réalisation</b><br>
+      Ce projet porte sur l'étude et la transformation globale d'un moteur thermique Lombardini afin d'adapter son fonctionnement à une combustion à l'hydrogène.</p>
+
+      <p><b>Objectifs et travaux futurs :</b><br>
+      L'objectif est d'analyser les adaptations mécaniques nécessaires (système d'injection spécifique, étanchéité, modifications de la chambre de combustion et gestion de l'admission). Les études de conception, les données techniques et les résultats d'essais seront progressivement ajoutés au cours de l'année.</p>
+
+      <p><i>ℹ️ Les informations et éléments visuels de ce projet seront mis à jour très prochainement au fil de son avancée.</i></p>
+    `;
+
+    openModal("Transition d'un moteur Lombardini en moteur à hydrogène", "Ingénierie & Énergie", lombardiniText, []);
+  }
+
+  /* MODALE SAVOIR-FAIRE */
+  function openSavoirFaireModal() {
+    const savoirFaireText = `
+      <p><b>Compétences Techniques & Procédés</b></p>
+      <ul>
+        <li><b>Conception CAO & Modélisation 3D :</b> Conception de pièces, d'assemblages complexes, mécanismes et tôlerie.</li>
+        <li><b>Méthodes & Industrialisation :</b> Rédaction de gammes de fabrication, gammes d'essais, création et suivi de dossiers techniques.</li>
+        <li><b>Usinage & Fabrication :</b> Tournage, fraisage conventionnel et à commande numérique (CN), FAO, découpe jet d'eau, pliage, emboutissage.</li>
+        <li><b>Fonderie & Assemblage :</b> Procédés de moulage en fonderie, soudage MIG et mise en place de montages d'usinage/gabarits.</li>
+        <li><b>Métrologie & Contrôle :</b> Mesures dimensionnelles de précision, contrôle tridimensionnel et tolérancement géométrique (GD&T).</li>
+      </ul>
+    `;
+    openModal("Savoir-faire", "Compétences Techniques", savoirFaireText, []);
+  }
+
+  /* MODALE SAVOIR-ÊTRE */
+  function openSavoirEtreModal() {
+    const savoirEtreText = `
+      <p><b>Qualités Humaines & Relationnelles</b></p>
+      <ul>
+        <li><b>Travail d'équipe & Collaboration :</b> Forte capacité à collaborer avec différents acteurs (opérateurs, techniciens, ingénieurs) en entreprise comme sur les projets d'études.</li>
+        <li><b>Communication & Écoute :</b> Échanges fluides et clairs pour comprendre les besoins du terrain et transmettre efficacement les consignes techniques.</li>
+        <li><b>Esprit d'initiative & Autonomie :</b> Capacité à prendre des initiatives pour résoudre des problèmes techniques et optimiser les processus existants.</li>
+        <li><b>Rigueur & Méthode :</b> Souci du détail, respect des normes de sécurité et précision dans le suivi documentaire.</li>
+        <li><b>Adaptabilité :</b> Polyvalence et grande faculté d'intégration face à de nouveaux environnements industriels ou matériels.</li>
+      </ul>
+    `;
+    openModal("Savoir-être", "Qualités & Relationnel", savoirEtreText, []);
+  }
+
+  /* MODALE LOGICIELS MAÎTRISÉS */
+  function openLogicielsModal() {
+    const logicielsText = `
+      <p><b>Logiciels Maîtrisés & Outils Métiers</b></p>
+      <ul>
+        <li><b>Creo (PTC) :</b> Modélisation 3D avancée, assemblages, tôlerie et FAO.</li>
+        <li><b>TopSolid :</b> Conception mécanique et préparation des usinages / FAO.</li>
+        <li><b>Infor :</b> Utilisation de l'ERP pour la gestion industrielle, le suivi de production et des stocks.</li>
+        <li><b>Excel (Suite Office) :</b> Création de tableaux de gestion, suivi d'approvisionnements et analyse de données.</li>
+        <li><b>Calypso (ZEISS) :</b> Programmation et analyse de mesures sur machines tridimensionnelles (MMT).</li>
+      </ul>
+    `;
+    openModal("Logiciels maîtrisés", "Outils Informatiques", logicielsText, []);
+  }
+
+  /* MODALE MONTAGNE, TREK & BIVOUAC */
+  function openMountainModal() {
+    const mountainText = `
+      <p><b>Une passion ancrée depuis l'enfance</b><br>
+      Passionné par la nature et les grands espaces depuis mon plus jeune âge, je parcours régulièrement la montagne au fil des saisons. L'hiver, je m'adonne au ski nordique et au ski de randonnée, tandis qu'au printemps et en été, je pars en trek sur plusieurs jours au cœur de décors magnifiques.</p>
+
+      <p><b>Esprit de groupe et partage</b><br>
+      Ces expéditions sont aussi une aventure humaine : je partage des séances de bivouac sous la tente et des sorties ski avec mes camarades de promotion du BUT GMP. Ces moments forts en altitude renforcent la cohésion, tissent des liens durables et favorisent de belles rencontres dans un cadre authentique.</p>
+    `;
+
+    openModal("Montagne, Trek & Bivouac", "Nature & Montagne", mountainText, ["montagne 1.jpg"]);
+  }
+
+  /* MODALE VTT & COMPÉTITION */
+  function openVTTModal() {
+    const vttText = `
+      <p><b>Pratique engagée depuis l'âge de 8 ans</b><br>
+      Passionné par le VTT depuis mon plus jeune âge, je suis licencié au club <b>ASCO VTT à Ouzouer-sur-Loire</b>. Ce sport me permet d'explorer des territoires et d'atteindre des horizons sauvages inaccessibles à pied, tout en procurant d'intenses sensations de pilotage.</p>
+
+      <p><b>Compétitions & Valeurs</b><br>
+      J'ai participé à plusieurs compétitions régionales qui m'ont appris le dépassement de soi, la persévérance et la rigueur dans la préparation du matériel. Au-delà de l'effort physique, le VTT représente pour moi une formidable discipline de partage et de passion partagée.</p>
+    `;
+
+    openModal("VTT & Compétition", "Sport & Sensations", vttText, ["VTT2.jpg"]);
+  }
+
+  /* MODALE DU PROJET GENOUILLÈRE */
+  function openKneeModal() {
+    const kneeText = `
+      <p><b>Conception et Modélisation CAO</b><br>
+      Ce projet visait à concevoir et fabriquer entièrement une genouillère mécanique. L'étude a débuté sous Creo Parametric par l'analyse cinématique et la modélisation 3D de chaque sous-ensemble en tôlerie et mécanique. L’assemblage numérique a permis de valider la faisabilité géométrique, le guidage des articulations et les positions de mise en repère (MIP) pour les futures opérations d'usinage et de soudage.</p>
+
+      <p><b>Industrialisation et Programmation FAO</b><br>
+      La phase d'industrialisation a consisté à définir la gamme de fabrication de chaque pièce. Nous avons préparé les programmes FAO sous Creo pour la découpe au jet d'eau des tôles, géré le calcul des fibres neutres pour le pliage et conçu un gabarit d'assemblage par soudure sur-mesure. Une attention particulière a été portée au chanfreinage des trous pour noyer les têtes de vis afin d'éviter toute interférence avec le mécanisme.</p>
+
+      <p><b>Fabrication, Usinage et Assemblage Final</b><br>
+      En atelier, après la découpe jet d'eau et les opérations de pliage, les pièces brutes ont été ébavurées et nettoyées. L'assemblage a combiné le soudage MIG des pièces de structure maintenues par leur montage d'usinage, la réalisation de perçages radiaux à la perceuse à colonne et le montage final articulé avec vis, entretoises et ressorts de rappel.</p>
+    `;
+
+    const kneeImages = [
+      'Assemblage CAO.png',
+      'CAO du gabarit de soudage.png',
+      'Pièces usinées, découpées et composants.jpg',
+      'Genouillère finale.jpg'
+    ];
+
+    openModal("Projet Genouillère", "Conception & Industrialisation", kneeText, kneeImages);
+  }
+
+  /* MODALE DU PROJET ŒUF SURPRISE */
+  function openEggModal() {
+    const eggText = `
+      <p><b>Conception globale et contraintes du projet</b><br>
+      Ce projet avait pour objectif d'imaginer et fabriquer un jouet démontable enfermé dans une coquille en forme d'œuf. Le cahier des charges imposait l'utilisation d'au moins trois matériaux différents répartis sur six pièces minimales. Nous avons conçu une balançoire fonctionnelle accueillant un personnage articulé inspiré de l'univers Lego. La coquille a été fabriquée par thermoformage PET avec un ajustement par épaulement mâle-femelle et une charnière imprimée en 3D.</p>
+
+      <p><b>Structure mécanique et socle réversible</b><br>
+      L'ensemble s'appuie sur un socle polyvalent en tôle d'acier découpé au jet d'eau, équipé de quatre pieds en tiges d'acier cintrées à 25° et soudés en MIG. Ce support réversible maintient l'œuf fermé d'un côté, puis se retourne pour devenir le plateau de la balançoire. La structure est composée de deux poutres verticales en aluminium liées par une poutre transversale dotée d'un pion de guidage.</p>
+
+      <p><b>Fabrication, finitions et résultats</b><br>
+      La figurine articulée a été façonnée en bois (frêne, hêtre et sapin) en combinant le tournage, le fraisage et des perçages de précision. Des jambes de force en tôle pliée consolident l'assise suspendue par de légères chaînes. Ce projet complet nous a permis de valider toute la chaîne de production, de la modélisation sous Creo Parametric jusqu'à l'usinage final en atelier.</p>
+    `;
+
+    const eggImages = [
+      'Projet balancoire CAO 2.png',
+      'Projet balancoire CAO.png',
+      'Projet balancoire final.jpg'
+    ];
+
+    openModal("Projet 2ème année œuf surprise", "Modélisation & Fabrication", eggText, eggImages);
+  }
+
+  /* MODALE DU PROJET TRAIN ÉPICYCLOÏDAL */
+  function openTrainModal() {
+    const trainText = `
+      <p><b>Analyse cinématique et calculs de transmission</b><br>
+      Étude approfondie et dimensionnement d'un train d'engrenages épicycloïdal. L'objectif était d'obtenir un rapport de réduction précis tout en optimisant l'encombrement global de la transmission mécanique.</p>
+
+      <p><b>Modélisation CAO et Intégration</b><br>
+      Conception détaillée des planétaires, satellites, porte-satellites et de la couronne dentée sous environnement CAO. Vérification des conditions de montage, d'engrenement et validation du comportement mécanique pour assurer une transmission fluide du couple.</p>
+    `;
+
+    const trainImages = [
+      'train1.jpg',
+      'train2.jpg'
+    ];
+
+    openModal("Conception d'un train épicycloïdal", "Conception & Transmission", trainText, trainImages);
+  }
+
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+  function closeModalOnBg(e) { if (e.target.id === 'modalOverlay') closeModal(); }
+</script>
+
+</body>
+</html>
